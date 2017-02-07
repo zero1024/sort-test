@@ -1,14 +1,9 @@
 /**
  * @author Perekhod Oleg
  */
-class QuickSort {
+class QuickSort<T extends Comparable> implements Sort<T> {
 
-
-    static void sort(Comparable[] ints) {
-        sort(ints, 0, ints.length - 1);
-    }
-
-    private static void sort(Comparable[] array, int begin, int end) {
+    public void sort(T[] array, int begin, int end) {
         //1. база рекурсии - 0 или 1
         int len = (end - begin) + 1;
         if (len == 0 || len == 1) {
@@ -19,7 +14,7 @@ class QuickSort {
         //2. база рекурсии - 2
         if (len == 2) {
             if (array[begin].compareTo(array[end]) == 1) {
-                Comparable tmp = array[begin];
+                T tmp = array[begin];
                 array[begin] = array[end];
                 array[end] = tmp;
             }
@@ -48,7 +43,7 @@ class QuickSort {
 
             //обмен
             if ((leftIsReady && rightIsReady) || (leftIsReady && rightIsBase) || (rightIsReady && leftIsBase)) {
-                Comparable tmp = array[i1];
+                T tmp = array[i1];
                 array[i1] = array[i2];
                 array[i2] = tmp;
 
