@@ -52,14 +52,12 @@ class QuickSort<T extends Comparable> implements Sort<T> {
                 } else if (rightIsBase) {
                     base = i1;
                 }
-                continue;
             }
 
             //смещение индексов
-            if (!leftIsReady && !leftIsBase) {
+            else if (!leftIsReady && !leftIsBase) {
                 i1++;
-            }
-            if (!rightIsReady && !rightIsBase) {
+            } else {
                 i2--;
             }
 
