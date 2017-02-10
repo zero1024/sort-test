@@ -1,7 +1,9 @@
+package sort;
+
 /**
  * @author Perekhod Oleg
  */
-class QuickSort<T extends Comparable> implements Sort<T> {
+public class QuickSort<T extends Comparable> implements Sort<T> {
 
     @Override
     public void sort(T[] array) {

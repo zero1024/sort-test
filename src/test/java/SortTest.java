@@ -1,4 +1,7 @@
 import org.junit.Test;
+import sort.BubbleSort;
+import sort.QuickSort;
+import sort.Sort;
 
 import java.util.Arrays;
 import java.util.Collections;
