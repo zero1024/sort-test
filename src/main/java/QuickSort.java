@@ -3,7 +3,12 @@
  */
 class QuickSort<T extends Comparable> implements Sort<T> {
 
-    public void sort(T[] array, int begin, int end) {
+    @Override
+    public void sort(T[] array) {
+        sort(array, 0, array.length - 1);
+    }
+
+    private void sort(T[] array, int begin, int end) {
         //1. база рекурсии - 0 или 1
         int len = (end - begin) + 1;
         if (len == 0 || len == 1) {
