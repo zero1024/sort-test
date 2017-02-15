@@ -1,17 +1,34 @@
 package tree;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Perekhod Oleg
  */
+@SuppressWarnings("unchecked")
 public class BiTree<T extends Comparable> implements Iterable<T> {
 
     private Node<T> root;
+    private boolean useImperativeIterator;
+
+    public BiTree() {
+        this(false);
+    }
+
+    public BiTree(boolean useImperativeIterator) {
+        this.useImperativeIterator = useImperativeIterator;
+    }
 
     @Override
     public Iterator<T> iterator() {
-        return new TreeIterator<>(root);
+        if (useImperativeIterator) {
+            return new ImperativeIterator<>(root);
+        } else {
+            return new OopIterator<T>(root);
+        }
     }
 
     public BiTree<T> add(T t) {
@@ -33,6 +50,16 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
 
         private boolean isParentOnLeftSide() {
             return parent.right == this;
+        }
+
+        private void visit(Consumer<T> consumer) {
+            if (left != null) {
+                left.visit(consumer);
+            }
+            consumer.accept(key);
+            if (right != null) {
+                right.visit(consumer);
+            }
         }
 
         private void add(T t) {
@@ -58,11 +85,35 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
 
     }
 
-    private static class TreeIterator<T extends Comparable> implements Iterator<T> {
+
+    //итераторы
+    private static class OopIterator<T extends Comparable> implements Iterator<T> {
+
+        private Iterator<T> iterator;
+
+        OopIterator(Node<T> root) {
+            List<T> list = new ArrayList<>();
+            root.visit(list::add);
+            this.iterator = list.iterator();
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
+
+        @Override
+        public T next() {
+            return iterator.next();
+        }
+    }
+
+    private static class ImperativeIterator<T extends Comparable> implements Iterator<T> {
 
         private Node<T> current;
 
-        TreeIterator(Node<T> root) {
+        ImperativeIterator(Node<T> root) {
             this.current = left(root);
         }
 
