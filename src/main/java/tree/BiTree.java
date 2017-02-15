@@ -22,6 +22,15 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
         this.useImperativeIterator = useImperativeIterator;
     }
 
+    //----------Публичное API----------------//
+
+    public void toArray(T[] array) {
+        int i = 0;
+        for (T t : this) {
+            array[i++] = t;
+        }
+    }
+
     @Override
     public Iterator<T> iterator() {
         if (useImperativeIterator) {
@@ -33,7 +42,7 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
 
     public BiTree<T> add(T t) {
         if (root == null) {
-            root = new Node<T>();
+            root = new Node<>();
             root.key = t;
         } else {
             root.add(t);
@@ -42,6 +51,7 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
     }
 
 
+    //-----------------Внутренние классы-------------------//
     static class Node<T extends Comparable> {
         private Node<T> left;
         private Node<T> right;
@@ -77,7 +87,7 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
                     left.key = t;
                     left.parent = this;
                 } else {
-                    left.add(key);
+                    left.add(t);
                 }
             }
         }

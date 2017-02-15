@@ -29,7 +29,7 @@ public class SortTest {
 
 
     private List<Sort<Integer>> sorts() {
-        return asList(new QuickSort<Integer>(), new BubbleSort<>());
+        return asList(new QuickSort<Integer>(), new BubbleSort<>(), new UnbalancedBiTreeSort());
     }
 
 }

@@ -10,6 +10,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import sort.BubbleSort;
 import sort.QuickSort;
 import sort.Sort;
+import sort.UnbalancedBiTreeSort;
 
 import java.util.List;
 import java.util.Random;
@@ -41,6 +42,14 @@ public class SortBench {
     @Benchmark
     public void bubbleSort() {
         Sort<Integer> sort = new BubbleSort<>();
+        for (Integer[] array : list) {
+            sort.sort(copyOf(array, array.length));
+        }
+    }
+
+    @Benchmark
+    public void unbalancedBiTreeSort() {
+        Sort<Integer> sort = new UnbalancedBiTreeSort<>();
         for (Integer[] array : list) {
             sort.sort(copyOf(array, array.length));
         }
