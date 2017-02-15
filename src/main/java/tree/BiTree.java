@@ -19,35 +19,13 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
             root = new Node<T>();
             root.key = t;
         } else {
-            Node<T> tmp = root;
-            while (tmp != null) {
-                if (t.compareTo(tmp.key) == 1) {
-                    if (tmp.right == null) {
-                        tmp.right = new Node<>();
-                        tmp.right.key = t;
-                        tmp.right.parent = tmp;
-                        tmp = null;
-                    } else {
-                        tmp = tmp.right;
-                    }
-                } else if (t.compareTo(tmp.key) == -1 || t.compareTo(tmp.key) == 0) {
-                    if (tmp.left == null) {
-                        tmp.left = new Node<>();
-                        tmp.left.key = t;
-                        tmp.left.parent = tmp;
-                        tmp = null;
-                    } else {
-                        tmp = tmp.left;
-                    }
-                }
-
-            }
+            root.add(t);
         }
         return this;
     }
 
 
-    static class Node<T> {
+    static class Node<T extends Comparable> {
         private Node<T> left;
         private Node<T> right;
         private Node<T> parent;
@@ -57,9 +35,30 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
             return parent.right == this;
         }
 
+        private void add(T t) {
+            if (t.compareTo(key) == 1) {
+                if (right == null) {
+                    right = new Node<>();
+                    right.key = t;
+                    right.parent = this;
+                } else {
+                    right.add(t);
+                }
+            } else if (t.compareTo(key) == -1 || t.compareTo(key) == 0) {
+                if (left == null) {
+                    left = new Node<>();
+                    left.key = t;
+                    left.parent = this;
+                } else {
+                    left.add(key);
+                }
+            }
+        }
+
+
     }
 
-    private static class TreeIterator<T> implements Iterator<T> {
+    private static class TreeIterator<T extends Comparable> implements Iterator<T> {
 
         private Node<T> current;
 
