@@ -11,6 +11,7 @@ import sort.BubbleSort;
 import sort.QuickSort;
 import sort.Sort;
 import sort.UnbalancedBiTreeSort;
+import tree.BiTree;
 
 import java.util.List;
 import java.util.Random;
@@ -49,6 +50,14 @@ public class SortBench {
     @Benchmark
     public void unbalancedBiTreeSort() {
         Sort<Integer> sort = new UnbalancedBiTreeSort<>();
+        for (Integer[] array : list) {
+            sort.sort(copyOf(array, array.length));
+        }
+    }
+
+    @Benchmark
+    public void unbalancedBiTreeSortWithImperativeIterator() {
+        Sort<Integer> sort = new UnbalancedBiTreeSort<>(() -> new BiTree<>(true));
         for (Integer[] array : list) {
             sort.sort(copyOf(array, array.length));
         }

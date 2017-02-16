@@ -52,6 +52,7 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
 
 
     //-----------------Внутренние классы-------------------//
+
     static class Node<T extends Comparable> {
         private Node<T> left;
         private Node<T> right;

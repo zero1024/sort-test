@@ -1,6 +1,7 @@
 package sort;
 
 import org.junit.Test;
+import tree.BiTree;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class SortTest {
 
 
     private List<Sort<Integer>> sorts() {
-        return asList(new QuickSort<Integer>(), new BubbleSort<>(), new UnbalancedBiTreeSort());
+        return asList(new QuickSort<>(), new BubbleSort<>(), new UnbalancedBiTreeSort<>(), new UnbalancedBiTreeSort<Integer>(() -> new BiTree<>(true)));
     }
 
 }
