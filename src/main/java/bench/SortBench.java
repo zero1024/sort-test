@@ -38,7 +38,6 @@ public class SortBench {
         }
     }
 
-
     @Benchmark
     public void bubbleSort() {
         Sort<Integer> sort = new BubbleSort<>();

@@ -10,7 +10,7 @@ public class QuickSort<T extends Comparable> implements Sort<T> {
         sort(array, 0, array.length - 1);
     }
 
-    private void sort(T[] array, int begin, int end) {
+    private static <T extends Comparable> void sort(T[] array, int begin, int end) {
         //1. база рекурсии - 0 или 1
         int len = (end - begin) + 1;
         if (len == 0 || len == 1) {
@@ -36,38 +36,27 @@ public class QuickSort<T extends Comparable> implements Sort<T> {
 
 
         //4. цикл
-        while (true) {
+        while (i1 < i2) {
 
-            boolean leftIsBase = i1 == base;
-            boolean rightIsBase = i2 == base;
-            boolean leftIsReady = array[i1].compareTo(array[base]) == 1;
-            boolean rightIsReady = array[i2].compareTo(array[base]) == -1;
-
-            //оба индексы долшли до базы
-            if (leftIsBase && rightIsBase) {
-                break;
+            while (i1 < base && (array[i1].compareTo(array[base]) == -1 || array[i1].compareTo(array[base]) == 0)) {
+                i1++;
             }
 
-            //обмен
-            if ((leftIsReady && rightIsReady) || (leftIsReady && rightIsBase) || (rightIsReady && leftIsBase)) {
+            while (i2 > base && (array[i2].compareTo(array[base]) == 1 || array[i2].compareTo(array[base]) == 0)) {
+                i2--;
+            }
+
+            if (i1 < i2) {
                 T tmp = array[i1];
                 array[i1] = array[i2];
                 array[i2] = tmp;
 
-                if (leftIsBase) {
+                if (i1 == base) {
                     base = i2;
-                } else if (rightIsBase) {
+                } else if (i2 == base) {
                     base = i1;
                 }
             }
-
-            //смещение индексов
-            else if (!leftIsReady && !leftIsBase) {
-                i1++;
-            } else {
-                i2--;
-            }
-
 
         }
 
