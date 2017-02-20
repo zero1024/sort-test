@@ -9,16 +9,16 @@ import java.util.function.Consumer;
  * @author Perekhod Oleg
  */
 @SuppressWarnings("unchecked")
-public class BiTree<T extends Comparable> implements Iterable<T> {
+public class UnbalancedBiTree<T extends Comparable> implements Iterable<T> {
 
     private Node<T> root;
     private boolean useImperativeIterator;
 
-    public BiTree() {
+    public UnbalancedBiTree() {
         this(false);
     }
 
-    public BiTree(boolean useImperativeIterator) {
+    public UnbalancedBiTree(boolean useImperativeIterator) {
         this.useImperativeIterator = useImperativeIterator;
     }
 
@@ -40,7 +40,7 @@ public class BiTree<T extends Comparable> implements Iterable<T> {
         }
     }
 
-    public BiTree<T> add(T t) {
+    public UnbalancedBiTree<T> add(T t) {
         if (root == null) {
             root = new Node<>();
             root.key = t;

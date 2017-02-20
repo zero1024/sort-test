@@ -1,6 +1,6 @@
 package sort;
 
-import tree.BiTree;
+import tree.UnbalancedBiTree;
 
 import java.util.function.Supplier;
 
@@ -9,19 +9,19 @@ import java.util.function.Supplier;
  */
 public class UnbalancedBiTreeSort<T extends Comparable> implements Sort<T> {
 
-    private Supplier<BiTree<T>> biTreeSupplier;
+    private Supplier<UnbalancedBiTree<T>> biTreeSupplier;
 
     public UnbalancedBiTreeSort() {
-        this(BiTree::new);
+        this(UnbalancedBiTree::new);
     }
 
-    public UnbalancedBiTreeSort(Supplier<BiTree<T>> biTreeSupplier) {
+    public UnbalancedBiTreeSort(Supplier<UnbalancedBiTree<T>> biTreeSupplier) {
         this.biTreeSupplier = biTreeSupplier;
     }
 
     @Override
     public void sort(T[] array) {
-        BiTree<T> tree = biTreeSupplier.get();
+        UnbalancedBiTree<T> tree = biTreeSupplier.get();
         for (T t : array) {
             tree.add(t);
         }

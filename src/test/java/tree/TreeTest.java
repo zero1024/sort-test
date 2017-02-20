@@ -18,17 +18,17 @@ public class TreeTest {
     @Test
     public void iterate() throws Exception {
 
-        actualTest(() -> new BiTree<>(true));
-        actualTest(() -> new BiTree<>(false));
+        actualTest(() -> new UnbalancedBiTree<>(true));
+        actualTest(() -> new UnbalancedBiTree<>(false));
 
 
     }
 
-    private static void actualTest(Supplier<BiTree<Integer>> supplier) {
+    private static void actualTest(Supplier<UnbalancedBiTree<Integer>> supplier) {
         Random random = new Random();
 
         for (int i = 0; i < 100; i++) {
-            BiTree<Integer> tree = supplier.get();
+            UnbalancedBiTree<Integer> tree = supplier.get();
             //1. создаем коллекцию случайных чисел
             List<Integer> list = Stream.generate(random::nextInt).limit(1000).collect(toList());
             //2. наполняем
